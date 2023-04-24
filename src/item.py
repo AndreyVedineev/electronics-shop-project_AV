@@ -72,4 +72,6 @@ class Item:
         return str(self.name)
 
     def __repr__(self):
-        return f"Item('{str(self.__name)}', {str(self.price)}, {str(self.quantity)})"
+        return f"{__class__.__name__}('{str(self.__name)}', {str(self.price)}, {str(self.quantity)})"
+
+
