@@ -9,6 +9,7 @@ packages = [{ include = "electronics_shop_project_av" }]
 [tool.poetry.dependencies]
 python = "^3.11"
 pytest = "^7.3.1"
+self = "^2020.12.3"
 
 
 [tool.poetry.group.dev.dependencies]

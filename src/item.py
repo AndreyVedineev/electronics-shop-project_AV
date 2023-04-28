@@ -74,4 +74,7 @@ class Item:
     def __repr__(self):
         return f"{__class__.__name__}('{str(self.__name)}', {str(self.price)}, {str(self.quantity)})"
 
+    def __add__(self, other):
+        return self.quantity + other.quantity
+
 
