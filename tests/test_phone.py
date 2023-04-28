@@ -20,3 +20,4 @@ def test_verify_sim():
     with pytest.raises(ValueError):
         phone1.number_of_sim = 2
         Phone.verify_sim(phone1.number_of_sim)
+
