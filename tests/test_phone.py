@@ -18,6 +18,9 @@ def test_repr():
 
 def test_verify_sim():
     with pytest.raises(ValueError):
-        phone1.number_of_sim = 2
-        Phone.verify_sim(phone1.number_of_sim)
+        phone1.verify_sim(0)
 
+
+def test_number_of_sim():
+    phone2 = Phone("iPhone 14", 120_000, 5, 1)
+    phone2.number_of_sim = 1
