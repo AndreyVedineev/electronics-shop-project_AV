@@ -48,11 +48,14 @@ def test_apply_discount():
     assert item1.price == 8000.0
 
 
-@pytest.mark.parametrize("a, result", [('5', 5), ('5.0', 5), ('5.5', 5)])
+@pytest.mark.parametrize("a, result", [('5', 5),
+                                       ('5.0', 5),
+                                       ('5.5', 5)])
 def test_string_to_number(a, result):
-    assert Item.string_to_number(a) == 5
+    assert Item.string_to_number(a) == result
 
 
-
-def test_add():
-    assert item1 + phone1 == 25
+@pytest.mark.parametrize('class_a, class_b, result', [(item1, phone1, 25),
+                                                      (phone1, phone1, 10)])
+def test_add(class_a, class_b, result):
+    assert class_a + class_b == result
