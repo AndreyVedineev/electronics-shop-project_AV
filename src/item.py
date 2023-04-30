@@ -75,6 +75,10 @@ class Item:
         return f"{__class__.__name__}('{str(self.__name)}', {str(self.price)}, {str(self.quantity)})"
 
     def __add__(self, other):
-        return self.quantity + other.quantity
+        temp = other.__class__.__name__  # имя другого класса (str)
+        if self.__class__.__name__ == Item or other.__class__.__name__ == temp:
+            return self.quantity + other.quantity
+        else:
+            return print("Складывать нельзя")
 
 
