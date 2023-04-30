@@ -2,18 +2,20 @@
 import pytest
 
 from src.item import Item
+from src.phone import Phone
 
-item1 = Item('Смартфон', 36000.0, 5)
+item1 = Item("Смартфон", 10000, 20)
+phone1 = Phone("iPhone 14", 120_000, 5, 2)
 
 
 def test_item_init():
     assert item1.name == 'Смартфон'
-    assert item1.price == 36000.0
-    assert item1.quantity == 5
+    assert item1.price == 10000.0
+    assert item1.quantity == 20
 
 
 def test_repr():
-    assert repr(item1) == "Item('Смартфон', 36000.0, 5)"
+    assert repr(item1) == "Item('Смартфон', 10000, 20)"
 
 
 def test_str():
@@ -32,7 +34,7 @@ def test_verify_name():
 
 
 def test_calculate_total_price():
-    assert item1.calculate_total_price() == 180000.0
+    assert item1.calculate_total_price() == 200000.0
 
 
 def test_instantiate_from_csv():
@@ -43,10 +45,17 @@ def test_instantiate_from_csv():
 def test_apply_discount():
     Item.pay_rate = 0.8
     item1.apply_discount()
-    assert item1.price == 28800.0
+    assert item1.price == 8000.0
 
 
-def test_string_to_number():
-    assert Item.string_to_number('5') == 5
-    assert Item.string_to_number('5.0') == 5
-    assert Item.string_to_number('5.5') == 5
+@pytest.mark.parametrize("a, result", [('5', 5),
+                                       ('5.0', 5),
+                                       ('5.5', 5)])
+def test_string_to_number(a, result):
+    assert Item.string_to_number(a) == result
+
+
+@pytest.mark.parametrize('class_a, class_b, result', [(item1, phone1, 25),
+                                                      (phone1, phone1, 10)])
+def test_add(class_a, class_b, result):
+    assert class_a + class_b == result
