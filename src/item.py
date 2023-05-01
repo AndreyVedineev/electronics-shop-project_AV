@@ -76,7 +76,7 @@ class Item:
 
     def __add__(self, other):
         temp = other.__class__.__name__  # имя другого класса (str)
-        if self.__class__.__name__ == Item or other.__class__.__name__ == temp:
+        if issubclass(other.__class__, self.__class__):
             return self.quantity + other.quantity
         else:
             return print("Складывать нельзя")
