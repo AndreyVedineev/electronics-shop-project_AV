@@ -31,8 +31,3 @@ class Phone(Item):
         self.verify_sim(number_of_sim)
         self.__number_of_sim = number_of_sim
 
-
-# phone1 = Phone("iPhone 14", 120_000, 5, 2)
-# print(phone1.number_of_sim)
-# phone1.number_of_sim = 0
-# # print(phone1.number_of_sim)
