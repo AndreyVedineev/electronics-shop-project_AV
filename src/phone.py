@@ -17,7 +17,7 @@ class Phone(Item):
     @classmethod
     def verify_sim(cls, __number_of_sim):
         """Проверяет, что длина наименования товара не больше 10 символов"""
-        if __number_of_sim <= 0:
+        if __number_of_sim <= 0 or type(__number_of_sim) != int:
             raise ValueError('Количество физических SIM-карт должно быть целым числом больше нуля.')
 
     @property
