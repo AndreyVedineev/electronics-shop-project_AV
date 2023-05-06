@@ -1,7 +1,8 @@
 import csv
+from abc import ABC
 
 
-class Item:
+class Item(ABC):
     """
     Класс для представления товара в магазине.
     """
@@ -23,7 +24,8 @@ class Item:
         self.__name = name
         self.price = price
         self.quantity = quantity
-        # self.all.append(self)
+        super().__init__()
+
 
     @classmethod
     def verify_name(cls, name):
@@ -80,5 +82,3 @@ class Item:
             return self.quantity + other.quantity
         else:
             return print("Складывать нельзя")
-
-
