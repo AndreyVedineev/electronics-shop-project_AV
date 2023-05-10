@@ -18,9 +18,8 @@ def test_language():
 
 
 def test_change_lang():
-    kb.language = 'RU'
-    kb.change_lang().change_lang() # не могу понять почему не работает
-    # kb.change_lang() # так работает
+    kb.change_lang().change_lang()
+
     assert str(kb.language) == 'RU'
 
 

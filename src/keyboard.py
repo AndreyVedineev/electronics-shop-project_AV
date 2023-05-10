@@ -3,16 +3,18 @@ from src.item import Item
 
 class MixingLang:
     """ Хранение и изменение раскладки клавиатуры"""
-    # __slots__ = ('EN', 'RU')
-    language = 'EN'
+    _language = 'EN'
 
-    @classmethod
-    def change_lang(cls):
+    def change_lang(self):
+        if self._language == 'EN':
+            self._language = 'RU'
+        else:
+            self._language = 'RU'
+        return self
 
-        if cls.language == 'EN':
-            cls.language = 'RU'
-        elif cls.language == 'RU':
-            return cls
+    @property
+    def language(self):
+        return self._language
 
 
 class KeyBoard(Item, MixingLang):
@@ -26,8 +28,3 @@ class KeyBoard(Item, MixingLang):
     def verify_name(cls, name):
         """Переопределяю метод """
         return cls.name
-
-
-kb = KeyBoard('Dark Project KD87A', 9600, 5)
-kb.language = 'CH'
-print(kb.language)
