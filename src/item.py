@@ -5,11 +5,15 @@ from abc import ABC
 class InstantiateCSVError(Exception):
     """Класс исключения при повреждении файла"""
 
-    def __init__(self, *args, **kwargs):
-        self.message = args[0] if args else '_Файл item.csv поврежден_'
+    def __init__(self, message, base_message=None):
+        self.base_message = base_message
+        self.message = message
 
     def __str__(self):
-        return self.message
+        if self.base_message is None:
+            return self.message
+
+        return f'{self.message} - {str(self.base_message)}'
 
 
 class Item(ABC):
@@ -52,8 +56,9 @@ class Item(ABC):
 
         except FileNotFoundError:
             print('_Отсутствует файл item.csv_')
-        except KeyError:
-            raise InstantiateCSVError
+
+        except KeyError as e:
+            print(InstantiateCSVError("_Файл item.csv поврежден_", e))
 
         return cls.all
 
