@@ -2,6 +2,16 @@ import csv
 from abc import ABC
 
 
+class InstantiateCSVError(Exception):
+    """Класс исключения при повреждении файла"""
+
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else '_Файл item.csv поврежден_'
+
+    def __str__(self):
+        return self.message
+
+
 class Item(ABC):
     """
     Класс для представления товара в магазине.
@@ -26,19 +36,25 @@ class Item(ABC):
         self.quantity = quantity
         super().__init__()
 
-
     @classmethod
     def verify_name(cls, name):
         """Проверяет, что длина наименования товара не больше 10 символов"""
-        if len(name) >= 10:
+        if len(name) >= 16:
             raise Exception("Длина наименования товара превышает 10 символов.")
 
     @classmethod
     def instantiate_from_csv(cls):
         cls.all = []
-        with open('../src/items.csv', encoding='utf-8', newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            cls.all = [cls((row['name']), float(row['price']), int(row['quantity'])) for row in reader]
+        try:
+            with open('../src/items.csv', encoding='windows-1251', newline='') as csvfile:
+                reader = csv.DictReader(csvfile)
+                cls.all = [cls((row['name']), float(row['price']), int(row['quantity'])) for row in reader]
+
+        except FileNotFoundError:
+            print('_Отсутствует файл item.csv_')
+        except KeyError:
+            raise InstantiateCSVError
+
         return cls.all
 
     @staticmethod
