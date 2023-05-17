@@ -12,6 +12,17 @@ files = [
 ]
 
 [[package]]
+name = "args"
+version = "0.1.0"
+description = "Command Arguments for Humans."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "args-0.1.0.tar.gz", hash = "sha256:a785b8d837625e9b61c39108532d95b85274acd679693b71ebb5156848fcf814"},
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 description = "Cross-platform colored terminal text."
@@ -196,4 +207,4 @@ decorator = "*"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "e4e11360f33480a8456be0f9ddbc084eda458b16656162597dfc7aed6618bc3d"
+content-hash = "1e471f94bc1f678126856df856aeb8cadc4a18cfadccacee3ac774986242bdf8"
