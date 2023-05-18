@@ -1,5 +1,8 @@
 import csv
+import os
 from abc import ABC
+
+path = os.path.join('..', 'src', 'items.csv')  # путь к файлу
 
 
 class InstantiateCSVError(Exception):
@@ -43,14 +46,14 @@ class Item(ABC):
     @classmethod
     def verify_name(cls, name):
         """Проверяет, что длина наименования товара не больше 10 символов"""
-        if len(name) >= 10:
+        if len(name) >= 15:
             raise Exception("Длина наименования товара превышает 10 символов.")
 
     @classmethod
     def instantiate_from_csv(cls):
         cls.all = []
         try:
-            with open('../src/items.csv', encoding='windows-1251', newline='') as csvfile:
+            with open(path, encoding='windows-1251', newline='') as csvfile:
                 reader = csv.DictReader(csvfile)
                 cls.all = [cls((row['name']), float(row['price']), int(row['quantity'])) for row in reader]
 
@@ -59,7 +62,7 @@ class Item(ABC):
 
         except KeyError as e:
             print(InstantiateCSVError("_Файл item.csv поврежден_", e))
-
+        print(cls.all)
         return cls.all
 
     @staticmethod
