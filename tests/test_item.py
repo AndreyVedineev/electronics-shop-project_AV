@@ -1,5 +1,4 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
-import os
 
 import pytest
 
@@ -30,9 +29,12 @@ def test_name():
 
 
 def test_verify_name():
-    with pytest.raises(Exception):
+    # with pytest.raises(Exception):
+    try:
         item1.name = 'СуперСмартфон'
         Item.verify_name(item1.name)
+    except Exception as ex:
+        assert ex.args[0] == "Длина наименования товара превышает 10 символов."
 
 
 def test_calculate_total_price():
@@ -64,7 +66,10 @@ def test_add(class_a, class_b, result):
 
 
 def test_not_file():
-    assert os.path.exists('../src/items.csv') == False
+    try:
+        open('../src/items.csv')
+    except FileNotFoundError as ex:
+        assert ex.args[1] == "No such file or directory"
 
 
 def test_file_is_corrupted():

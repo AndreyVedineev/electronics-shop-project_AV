@@ -43,7 +43,7 @@ class Item(ABC):
     @classmethod
     def verify_name(cls, name):
         """Проверяет, что длина наименования товара не больше 10 символов"""
-        if len(name) >= 15:
+        if len(name) >= 10:
             raise Exception("Длина наименования товара превышает 10 символов.")
 
     @classmethod
